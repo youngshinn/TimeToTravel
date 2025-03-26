@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+
+{% block title %}역사 소개 및 네비게이션{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="/static/styles/region.css">
+
+<style>
+  /* 공통 스타일 */
+  .content-section {
+    margin: 50px auto;
+    max-width: 1300px;
+    padding: 20px;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 10px 0;
+    z-index: 100;
+    text-align: center;
+  }
+
+  .navbar a {
+    padding: 14px 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+
+  .navbar a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .section {
+    margin-top: 80px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .content-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+
+  .content-table th,
+  .content-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .content-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .content-table img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* 퀵 메뉴 스타일 */
+  .quick-menu {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+
+  .quick-menu h3 {
+    font-size: 18px;
+    color: #4CAF50;
+  }
+
+  .quick-menu ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .quick-menu ul li {
+    margin: 10px 0;
+  }
+
+  .quick-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .quick-menu ul li a:hover {
+    color: #4CAF50;
+  }
+
+  /* 반응형 스타일 */
+  @media (max-width: 768px) {
+    .quick-menu {
+      position: static;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .navbar {
+      display: block;
+      text-align: center;
+    }
+
+    .content-table img {
+      width: 100%;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-section" id="region-content">
+  <!-- 네비게이션 바 -->
+  <div class="navbar">
+    <a href="#location" class="active">위치</a>
+    <a href="#footsteps">단양의 발자취</a>
+    <a href="#timeline">연혁</a>
+  </div>
+
+  <main>
+    <!-- 위치 섹션 -->
+    <div class="section" id="location">
+      <p class="section-title">위치</p>
+      <p>여기에 위치 정보가 들어갑니다...</p>
+    </div>
+
+    <!-- 단양의 발자취 섹션 -->
+    <div class="section" id="footsteps">
+      <p class="section-title">선사시대</p>
+      <p>단양지역은 인류의 선조로 하여금 선사문화를 발달시키게 하는 풍요한 삶의 터전을 제공하였다. 남한강을 바라보는 아름다운 동굴 금굴은 70만 년 전부터 3천 년 전까지의 고른 유물층을 가지고 있어 선사문화연구의 표준 유적이 되고 있다. 수양개 지역은 원시 혁명의 도구인 석기 제작소가 50군데나 발견된 세계적인 규모의 선사유적으로 "수양개와 그 이웃들"이란 주제의 국제 학술대회를 통하여 되살아나고 있다. 금굴에서 머지않은 곳에 위치한 구낭굴 유적과 상시 바위그늘 유적에서도 인류문화 태동의 흔적을 쏟아내었으니 단양은 그야말로 인류문화의 발상지라는 이름에 하등 손색이 없는 고장임에 틀림없다</p>
+      <table class="content-table">
+        <tr>
+          <th>물고기 모양을 새긴 예술품 (수양개 출토)</th>
+          <th>주먹도끼 (금굴 출토)</th>
+          <th>곰 등뼈 (구낭굴 출토)</th>
+        </tr>
+        <tr>
+          <td><img src="../static/region/d1.png" alt="물고기 모양을 새긴 예술품"></td>
+          <td><img src="../static/region/d2.png" alt="주먹도끼"></td>
+          <td><img src="../static/region/d3.png" alt="곰 등뼈"></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 삼국시대 섹션 -->
+    <div class="section" id="three-kingdoms">
+      <p class="section-title">삼국시대</p>
+      <p>단양은 삼국시대 초기에는 백제의 영향권에 있었으나 고구려가 남하하면서 고구려의 영토가 되었다가 후에 신라의 영역이 되었다. 이 과정에서 특히 고구려에서 신라의 영역으로 바뀌는 과정에서 많은 전투가 있었다. 신라 진흥왕은 적성(단양)을 공략하여 탈취하고 이를 기념하여 단양신라적성비를 세웠다. 비의 내용에는 적성 사람 야이차가 신라를 도운 공로로 포상 받았다는 내용이 함께 기록되어 있다. 고구려의 장수 온달은 잃어버린 고토를 회복하기 위하여 출정하였으나 뜻을 이루지 못하고 아단성(온달산성) 아래에서하였다. 이처럼 단양은 고구려-신라의 접경지로 오랜 기간 대치하였던 슬픈 역사를 간직하고 있다.</p></p>
+      <table class="content-table">
+        <tr>
+          <th>단양신라적성비</th>
+          <th>온달산성</th>
+        </tr>
+        <tr>
+          <td><img src="../static/region/d4.png" alt="단양신라적성비"></td>
+          <td><img src="../static/region/d5.png" class="ondal-image" alt="온달산성"></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 고려·조선시대 섹션 -->
+    <div class="section" id="goryeo-joseon">
+      <p class="section-title">고려·조선시대</p>
+      <p>고려 충렬왕 때에 현민이 합단의 침입에 맞서 싸운 공로로 감무가 설치되었고, 충숙왕 5년에는 군으로 승격되어 단양군 지사가 파견되었다. 단양 장씨, 단양 우씨 등을 중심으로 고려 후기 융성했던 문화상이 적성 현곡에서 발굴되는가 하면, 특히 우탁은 역학에 정통하여 역동 선생으로 불리며 유림의 근본이 되었다. 조선의 개국공신 정도전은 우리 지역과 든든한 이연의 고리를 만들었으며, 명종조 황준량은 상소를 올려 세금을 감면시킴으로써 도탄에서 백성을 구한 목민관의 모범을 보였다. 김홍도, 정선, 최북, 이방운 등 이름만 들어도 쟁쟁한 조선의 화가들이 단양의 명승을 그림으로 그려 남겼으며, 이황, 이이, 정약용, 권섭, 김병연, 김정희 등 당대의 명현들이 시문과 기행문을 남겨 단양의 경승을 칭송하였다. 그야말로 단양은 풍류 명현의 마음의 고향이기에 부족함이 없었다</p>
+      <table class="content-table">
+        <tr>
+          <th>단구승유도 - 최북作</th>
+          <th>사인암 - 김홍도作</th>
+          <th>구담봉 - 이방운作</th>
+        </tr>
+        <tr>
+          <td><img src="../static/region/d6.png" alt="단구승유도"></td>
+          <td><img src="../static/region/d7.png" alt="사인암"></td>
+          <td><img src="../static/region/d8.png" alt="구담봉"></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 연혁 섹션 -->
+    <div class="section" id="timeline">
+      <h2 class="period-title">단양군의 연혁</h2>
+      <table class="history-table">
+        <thead>
+            <tr>
+                <th>연대</th>
+                <th>단양</th>
+                <th>영춘</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>삼국시대<br>(? ~ 668년)</td>
+                <td>• 고구려(高句麗) 적산현(赤山縣)<br>• 적성현(赤城縣)</td>
+                <td>• 고구려(高句麗) 을아단현(乙阿旦縣)</td>
+            </tr>
+            <tr>
+                <td>통일신라시대<br>(669년 ~ 917년)</td>
+                <td>• 한주(漢州)·내제군(奈堤郡)의 속현</td>
+                <td>• 신문왕 대에 자춘현(子春縣)으로 개칭</td>
+            </tr>
+            <tr>
+                <td rowspan="3">고려시대<br>(918년 ~ 1392년)</td>
+                <td>• 고려초에 단산현(丹山縣)으로 개칭<br>• 현종 9년(1018년)에 원주의 속현이 됨<br>• 고종(1214년~1260년)대에 감무(監務)를 설치</td>
+                <td>• 강원도 원주군의 속현</td>
+            </tr>
+            <tr>
+                <td>• 충숙왕 5년(1319년)에 지단양군사(知丹陽郡事)를 설치<br>• 공민왕(1351년~1374년) 대에 단산부(丹山府)가 됨<br>• 진명병갑도사(賑養兵甲都事)를 설치하여 충주진영에 예속</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>• 조선시대<br>(1392년 ~ 1910년)</td>
+                <td>• 1400년도 초 태종 대에 단양군(丹陽郡)으로 개칭<br>• 충청도에 예속 태종(1400년~1418년)대에 자춘(子春)으로 개칭<br>• 세종 3년(1421년)에 영춘(永春)으로 개칭</td>
+            </tr>
+            <tr>
+                <td rowspan="12">대한민국</td>
+                <td>• 부령 제111호(1913년 12월 29일 공포) 부군면(府郡面) 폐합으로 영춘군 편입</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1976년 10월 1일: 군 조례 제384조로(1976년 9월 13일 공포) 용현면에 벌랏출장소 설치</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1979년 5월 1일: 대통령령 제9409호(1979년 4월 7일 공포) 단양읍을 단양읍으로 승격(1읍 6면 1출장소)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1980년 12월 1일: 대통령령 제10050호(1980년 12월 1일 공포) 매포읍을 매포읍으로 승격(2읍 5면 1출장소)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1985년 6월 1일: 군 조례 제802호(1985년 5월 20일 공포) 단양읍에 구단양출장소 설치(2읍 5면 2출장소)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1985년 7월 15일: 대통령령 제11716호(1985년 6월 29일 공포) 단양읍과 매포읍간 경계조정 군청 소재지 이전</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1985년 11월 1일: 군 조례 제904호(1985년 10월 14일 공포) 적성면에 각기출장소 설치(2읍 5면 3출장소)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1987년 1월 1일: 대통령령 제12007호(1986년 12월 23일 공포) 어상천면 자작리를 제천시에 어상천면 금사리를 매포읍에 편입</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1989년 1월 1일: 군 조례 제1108호(1989년 12월 29일 공포) 대강면 노동, 장천, 마도, 수촌, 천동, 금곡, 기촌, 후곡, 고수리를 단양읍으로 편입</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1992년 1월 1일: 내무부고시 제91-42호(1991년 12월 14일 공포) 단양읍 구단양출장소를 단성면으로 개칭(2읍 6면 2출장소)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1993년 12월 1일: 군 조례 제1301호 (1991년 12월 31일 공포) 단양읍 북상, 북하 상상, 중상, 하방, 외중방, 장회, 두항, 고평, 양방, 번천, 가재, 회산, 대강리를 단성면으로 편입</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1998년 9월 23일: 군 조례 제1520호(1998년 9월 23일 공포) 영춘면 벌랏출장소와 적성면 각기출장소 폐지(2읍6면)</td>
+                <td></td>
+            </tr>
+
+            <!-- 더 많은 행이 여기에 추가될 수 있습니다 -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- 퀵 메뉴 섹션 -->
+<div class="quick-menu" id="quick-menu">
+  <div class="menu-section">
+    <h3>지역 정보</h3>
+    <ul>
+      <li><a href="#location">위치</a></li>
+      <li><a href="#footsteps">단양의 발자취</a></li>
+      <li><a href="#timeline">연혁</a></li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

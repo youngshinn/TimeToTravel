@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Time To Travel{% endblock %}</title>
+    
+    <!-- 공통 CSS 파일 연결 -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- 각 페이지별 추가 스타일 -->
+    {% block extra_styles %}
+    {% endblock %}
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f343a84bb3a9da1eeff4a3a0d1033c37&libraries=services"></script>
+
+</head>
+<body>
+    <!-- 공통 헤더 -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="/" class="load-page" data-url="/"></a>
+                    <img src="/static/logo.png" alt="Logo">
+                    <div class="logo-text">Time To Travel<br><span>with DanSungSa</span></div>
+            </a>    
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="load-page" data-url="/region_intro">지역소개</a></li>
+                    <li><a href="#" class="load-page" data-url="/route.html">추천경로</a></li>
+                    <li><a href="#" class="load-page" data-url="/tourist_spots">관광지</a></li>
+                    <li><a href="#" class="load-page" data-url="/recomanation">숙소</a></li>
+                </ul>
+            </nav>
+            <div class="search-container">
+                <form action="/search" method="GET">
+                    <input type="text" name="query" placeholder="검색어를 입력해주세요." required>
+                    <button type="submit">
+                        <img src="/static/search.png alt="Search Icon">
+                    </button>
+                </form>
+            </div>
+            <div class="icons">
+                <img src="/static/menu-icon.png" alt="Menu Icon">
+                <img src="/static/home-icon.png" alt="Home Icon">
+            </div>
+        </div>
+    </header>
+
+    <!-- 각 페이지의 콘텐츠가 표시될 부분 -->
+    <main id="content">
+        {% block content %}
+        <!-- 각 페이지의 내용이 여기에 삽입됩니다 -->
+        {% endblock %}
+    </main>
+
+    <!-- 공통 푸터 -->
+    <footer class="footer-container">
+        <div class="footer-logo">
+            <img src="/static/logo.png" alt="Logo">
+            <div class="footer-text">
+                <strong>Time To Travel</strong><br>with DanSungSa
+            </div>
+        </div>
+        <div class="footer-info">
+            <p><strong>SJBros@hnlcssjsp.com</strong></p>
+            <p>STUDIO : 단성스튜디오</p>
+            <p>OFFICE : 서울 종로구 돈화문로 26 단성사 5층</p>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright SJ with Brothers co.</p>
+        </div>
+    </footer>
+
+    <!-- 공통 JS 파일 연결 -->
+    <script src="/static/script.js"></script>
+
+    <!-- 각 페이지별 추가 스크립트 -->
+    {% block extra_scripts %}
+    {% endblock %}
+
+
+<script>
+    document.getElementById('logo-img').addEventListener('click', function() {
+        window.location.href = '/';
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+            const links = document.querySelectorAll(".load-page");
+
+            links.forEach(link => {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault(); // 기본 링크 동작 방지
+                    const url = this.getAttribute("data-url");
+
+                    // Fetch API를 사용하여 페이지 로드
+                    fetch(url)
+                        .then(response => response.text())
+                        .then(html => {
+                            // 새로 받은 HTML을 content-container에 삽입
+                            document.getElementById("content-container").innerHTML = html;
+                            window.history.pushState(null, null, url); // URL 업데이트
+                        })
+                        .catch(error => {
+                            console.error("Error loading page:", error);
+                        });
+                });
+            });
+
+            // 뒤로가기, 앞으로가기를 처리하기 위한 popstate 이벤트
+            window.addEventListener("popstate", function() {
+                const currentUrl = window.location.pathname;
+                fetch(currentUrl)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById("content-container").innerHTML = html;
+                    });
+            });
+        });
+</script>
+</body>
+</html>
