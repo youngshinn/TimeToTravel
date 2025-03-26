@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %} 관광지 추천 - Time To Travel {% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="/static/styles/tourist.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <!-- 필터 섹션 -->
+        <aside class="filter">
+            <form method="GET" class="filter-form">
+                <div class="filter-box">
+                    <label><input type="checkbox" name="category" value="전체" {% if "전체" in category %}checked{% endif %}> 전체</label><br>
+                    <label><input type="checkbox" name="category" value="단양팔경" {% if "단양팔경" in category %}checked{% endif %}> 단양팔경</label><br>
+                    <label><input type="checkbox" name="category" value="단양제2팔경" {% if "단양제2팔경" in category %}checked{% endif %}> 단양제2팔경</label><br>
+                    <label><input type="checkbox" name="category" value="관광지" {% if "관광지" in category %}checked{% endif %}> 관광지</label><br>
+                    <button type="submit" class="filter-submit">검색</button>
+                </div>
+                
+                <!-- 느림보길 배너 섹션 -->
+                <div class="nurembogil-banner">
+                    <h2>느림보길</h2>
+                    <div class="nurembogil-buttons">
+                        <button type="button" onclick="showImage('nurembogangmul')">느림보강물길</button>
+                        <button type="button" onclick="showImage('nuremboyuram')">느림보유람길</button>
+                        <button type="button" onclick="showImage('sobaeksan')">소백산자락길</button>
+                    </div>
+                </div>
+            </form>
+        </aside>
+
+        <!-- 콘텐츠 표시 섹션 -->
+        <main class="content-grid">
+            {% for spot in spots %}
+            <div class="card" onclick="openModal({{ spot.id }})">
+                <img src="/static/images/{{ spot.name | replace(' ', '_') }}.jpg" alt="{{ spot.name }}">
+                <h3>{{ spot.name }}</h3>
+                <p>{{ spot.address }}</p>
+            </div>
+            {% endfor %}
+            {% if not spots %}
+            <p>표시할 관광지가 없습니다.</p>
+            {% endif %}
+        </main>
+
+        <!-- 가장 많이 클릭된 관광지 사이드 배너 섹션 -->
+        <aside class="most-clicked-banner">
+            <h2>실시간 검색 순위</h2>
+            <div class="most-clicked-list">
+                {% for spot in most_clicked_spots %}
+                <div class="banner-card" onclick="openModal({{ spot.id }})">
+                    <div class="banner-card-image">
+                        <img src="/static/images/{{ spot.name | replace(' ', '_') }}.jpg" alt="{{ spot.name }}">
+                    </div>
+                    <div class="banner-card-details">
+                        <h3>{{ spot.name }}</h3>
+                        <p class="spot-address">{{ spot.address }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if not most_clicked_spots %}
+            <p>가장 많이 클릭된 관광지가 없습니다.</p>
+            {% endif %}
+        </aside>
+    </div>
+
+    <!-- 모달 창 구조 (이미지 모달용) -->
+    <div id="nurembogilModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeImageModal()">&times;</span>
+            <div id="nurembogilModalBody">
+                <!-- 클릭한 버튼에 따라 이미지가 여기에 표시됩니다. -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 관광지 모달 창 구조 -->
+    <div id="touristModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- 관광지 상세 정보가 동적으로 로드됩니다. -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 코드 -->
+    <script>
+        // 모달 창 열기 함수 (관광지)
+        function openModal(spotId) {
+            document.getElementById('touristModal').style.display = 'block';
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = '<p>Loading...</p>';
+
+            fetch(`/tourist_spot/${spotId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch spot data');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    modalBody.innerHTML = `
+                        <h2>${data.name}</h2>
+                        <img src="/static/images/${data.name.replace(' ', '_')}.jpg" alt="${data.name}" style="width: 800px; height: 400px; object-fit: cover;">
+                        <p>주소: ${data.address}</p>
+                        <p>연락처: ${data.contact_info}</p>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error loading spot data:', error);
+                    modalBody.innerHTML = '<p>데이터를 불러오는 데 실패했습니다.</p>';
+                });
+
+            fetch(`/increment_click_count/${spotId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(`Click count updated for spot ID: ${spotId}`);
+                })
+                .catch(error => {
+                    console.error('Error updating click count:', error);
+                });
+        }
+
+        // 모달 창 닫기 함수 (관광지)
+        function closeModal() {
+            document.getElementById('touristModal').style.display = 'none';
+        }
+
+        // 느림보길 이미지 모달 열기 함수
+        function showImage(path) {
+            const modalBody = document.getElementById('nurembogilModalBody');
+            let imagePath = '';
+
+            if (path === 'nurembogangmul') {
+                imagePath = '/static/images/gangmulgil.png';
+            } else if (path === 'nuremboyuram') {
+                imagePath = '/static/images/nuremboyuram.jpg';
+            } else if (path === 'sobaeksan') {
+                imagePath = '/static/images/sobaeksan.jpg';
+            }
+
+            modalBody.innerHTML = `<img src="${imagePath}" alt="${path}" style="width: 100%; max-width: 800px;">`;
+            document.getElementById('nurembogilModal').style.display = 'block';
+        }
+
+        // 느림보길 이미지 모달 닫기 함수
+        function closeImageModal() {
+            document.getElementById('nurembogilModal').style.display = 'none';
+        }
+    </script>
+{% endblock %}

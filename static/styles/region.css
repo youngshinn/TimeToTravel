@@ -1,0 +1,122 @@
+/* 추가된 지역 정보 화면 스타일 */
+.content-section {
+    margin: 50px auto;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 10px 0;
+    z-index: 100;
+    text-align: center;
+}
+
+.navbar a {
+    padding: 14px 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.section {
+    margin-top: 80px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.content-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.content-table th,
+.content-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.content-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.content-table img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 퀵 메뉴 스타일 */
+.quick-menu {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.quick-menu h3 {
+    font-size: 18px;
+    color: #4CAF50;
+}
+
+.quick-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.quick-menu ul li {
+    margin: 10px 0;
+}
+
+.quick-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.quick-menu ul li a:hover {
+    color: #4CAF50;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .quick-menu {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .navbar {
+        display: block;
+        text-align: center;
+    }
+
+    .content-table img {
+        width: 100%;
+    }
+}

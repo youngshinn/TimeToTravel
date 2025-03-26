@@ -1,0 +1,74 @@
+<!-- index.html -->
+{% extends "base.html" %}
+
+{% block title %}Home - Time To Travel{% endblock %}
+
+{% block content %}
+<section class="carousel">
+    <div class="slides" id="photoSlides">
+        <div class="slide"><img src="/static/index/jando.png" alt="Slide 1"></div>
+        <div class="slide"><img src="/static/index/sky.png" alt="Slide 2"></div>
+        <div class="slide"><img src="/static/index/su.png" alt="Slide 3"></div>
+        <div class="slide"><img src="/static/index/1.jpg" alt="Slide 4"></div>
+        <div class="slide"><img src="/static/index/jando.png" alt="Slide 1 Clone"></div>
+    </div>
+    <div class="carousel-indicators" id="photoIndicators">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+    </div>
+</section>
+
+<section class="recommendations">
+    <div class="course-buttons">
+        <h2>성준이가 추천하는 단양 여행</h2>
+        <button onclick="toggleMap(0)">도시 좋아 A course</button>
+        <button onclick="toggleMap(1)">산이 좋아 B course</button>
+        <button onclick="toggleMap(2)">종이 좋아 C course</button>
+    </div>
+    <div class="maps">
+        <div class="map-slide" id="map1">
+            <img src="/static/index/m1.png" alt="Map 1">
+            <button class="close-button" onclick="closeMap()">닫기</button>
+        </div>
+        <div class="map-slide" id="map2">
+            <img src="/static/index/m2.png" alt="Map 2">
+            <button class="close-button" onclick="closeMap()">닫기</button>
+        </div>
+        <div class="map-slide" id="map3">
+            <img src="/static/index/m3.png" alt="Map 3">
+            <button class="close-button" onclick="closeMap()">닫기</button>
+        </div>
+    </div>
+</section>
+<section class="enjoy-danyang">
+    <h2>단양을 즐기다</h2>
+    <div class="cards">
+        <div class="card">
+            <img src="/static/index/b1.png" alt="단양에서의 특별한 밤">
+            <div class="card-content">
+                <h3>단양에서의 특별한 밤</h3>
+                <p>가족끼리, 친구끼리, 연인끼리 보내는 낭만 가득한 시간</p>
+                <a href="https://www.danyang.go.kr/tour/1918">더 많은 숙소 보기 &gt;</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/static/index/b4.jpg" alt="소백산과 남한강이 내 발밑에!">
+            <div class="card-content">
+                <h3>소백산과 남한강이 내 발밑에!</h3>
+                <p>단양을 대표하는 소백산과 남한강을 바라보며 자유롭게 활동하는 시간</p>
+                <a href="#">더 많은 액티비티 보기 &gt;</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/static/index/b3.png" alt="평강공주 그리고 온달">
+            <div class="card-content">
+                <h3>평강공주 그리고 온달</h3>
+                <p>모두가 알고 있는 그 이야기, 평강공주와 바보 온달을 기리는 축제</p>
+                <a href="https://www.danyang.go.kr/tour/1924?chathead=%EC%B6%95%EC%A0%9C">더 많은 축제 보기 &gt;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

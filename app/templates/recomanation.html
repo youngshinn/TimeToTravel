@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}숙소 검색 - Time To Travel{% endblock %}
+
+
+{% block extra_styles %}
+<!-- route.css 파일을 연결 -->
+<link rel="stylesheet" href="/static/styles/recomandation.css">
+
+{% endblock %}
+{% block content %}
+<main class="accommodation-search-container">
+    <h1>숙소 검색</h1>
+
+    <!-- 검색 폼 -->
+    <form action="/recomanation" method="get" class="search-form">
+        <input type="text" id="searchInput" name="search" placeholder="숙소 이름을 입력하세요" value="{{ search or '' }}" class="search-input">
+        <button type="submit" class="search-button">검색</button>
+        <div id="autocomplete-results" class="autocomplete-results"></div> <!-- 자동 완성 결과를 보여줄 요소 -->
+    </form>
+
+    <!-- 필터 버튼 -->
+    <div class="filter-buttons">
+        <button class="filter-button" onclick="filterByType('펜션')">펜션</button>
+        <button class="filter-button" onclick="filterByType('모텔')">모텔</button>
+        <button class="filter-button" onclick="filterByType('호텔')">호텔</button>
+        <button class="filter-button" onclick="filterByType('민박')">민박</button>
+        <button class="filter-button" onclick="showAll()">모두 보기</button>
+    </div>
+
+    <!-- 검색 결과 -->
+    {% if accommodations %}
+    <h2>검색 결과</h2>
+    <ul id="accommodationList" class="accommodation-list">
+        {% for accommodation in accommodations %}
+        <li class="accommodation-item" data-type="{{ accommodation.type }}">
+            <div class="accommodation-card">
+                <h3>{{ accommodation.name }}</h3>
+                <p><strong>유형:</strong> {{ accommodation.type }}</p>
+                <p><strong>객실 수:</strong> {{ accommodation.rooms }}</p>
+                <p><strong>주소:</strong> {{ accommodation.address }}</p>
+                <p><strong>연락처:</strong> {{ accommodation.phone }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="no-results">검색 결과가 없습니다.</p>
+    {% endif %}
+</main>
+
+<script>
+    function filterByType(type) {
+        const items = document.querySelectorAll('.accommodation-item');
+        items.forEach(item => {
+            if (item.getAttribute('data-type') === type || type === '모두 보기') {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function showAll() {
+        filterByType('모두 보기');
+    }
+</script>
+{% endblock %}

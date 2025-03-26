@@ -1,0 +1,290 @@
+/* 기본 레이아웃 설정 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    margin-bottom: 40px; /* 헤더 아래에 간격 추가 */
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정 */
+}
+
+/* 전체 컨테이너로 필터, 콘텐츠, 배너를 감싸는 flexbox 레이아웃 */
+.container {
+    display: flex;
+    justify-content: space-between; /* 좌우 균등 분배 */
+    align-items: flex-start; /* 콘텐츠 위쪽 정렬 */
+    gap: 20px; /* 요소 사이의 간격 */
+    flex-grow: 1; /* 컨텐츠가 차지할 수 있는 남은 공간을 모두 차지 */
+    padding: 50px 50px 0; /* 페이지 상단과 좌우에 패딩 */
+}
+
+/* 필터 섹션 */
+aside.filter {
+    width: 200px;
+    padding: 20px;
+}
+
+aside.filter h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+aside.filter form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* 필터 박스 스타일 */
+.filter-box {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.filter-box label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding: 8px 0;
+}
+
+.filter-box input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.filter-box .filter-submit {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.filter-box .filter-submit:hover {
+    background-color: #0056b3;
+}
+
+/* 느림보길 배너 스타일 */
+.nurembogil-banner {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.nurembogil-banner h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+/* 버튼들을 세로로 나열 */
+.nurembogil-buttons {
+    display: flex;
+    flex-direction: column; /* 세로 배치 */
+    gap: 10px; /* 버튼 사이 간격 */
+    margin-bottom: 15px;
+}
+
+.nurembogil-buttons button {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #79899a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.nurembogil-buttons button:hover {
+    background-color: #cad7e6;
+}
+
+/* 이미지 중앙 정렬 */
+.nurembogil-image {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.nurembogil-image img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* 콘텐츠 그리드 */
+main.content-grid {
+    flex: 1; /* 필터와 배너 사이에서 남은 공간을 차지 */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3분할 그리드 */
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+main.content-grid .card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+main.content-grid .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+main.content-grid .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+main.content-grid .card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+main.content-grid .card p {
+    font-size: 14px;
+    color: gray;
+}
+
+/* 모달 내부 이미지 크기 설정 */
+.modal-content img {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    object-fit: cover;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 가장 많이 클릭된 관광지 사이드 배너 스타일 */
+.most-clicked-banner {
+    width: 200px;
+    position: sticky;
+    top: 150px;
+    right: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.most-clicked-banner h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.most-clicked-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.banner-card {
+    display: flex;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.banner-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.banner-card-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.banner-card-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.banner-card-details h3 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.banner-card-details .spot-address {
+    font-size: 12px;
+    color: #666;
+}
+
+/* 풋터 스타일 */
+footer {
+    background-color: #fff;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: auto;
+}
