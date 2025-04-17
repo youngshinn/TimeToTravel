@@ -6,7 +6,7 @@
 
 ---
 
-## ✨ 주요 기능
+##  주요 기능
 
 - **관광지 추천**
   - 카테고리별로 단양 지역의 관광지 추천
@@ -45,7 +45,7 @@
 `.env` 파일 생성 후 다음과 같이 설정:
 
 ```env
-DATABASE_URL=mysql+mysqlconnector://root:password1234@127.0.0.1:3306/roominfo
+DATABASE_URL=mysql+mysqlconnector://<root>:<password>@<127.0.0.1>:3306/roominfo
 ```
 
 ### 2. 의존성 설치
@@ -99,7 +99,7 @@ project2/
 
 ---
 
-## 👥 팀원 소개
+##  팀원 소개
 
 - 안성준
 - 이경석
